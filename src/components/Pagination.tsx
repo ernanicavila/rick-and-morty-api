@@ -10,7 +10,7 @@ function Pagination({ current = 0, total = 0, setPage }: IPagination) {
 				<IconButton
 					aria-label="Página Anterior"
 					onClick={() => setPage(current - 1)}
-					isDisabled={current - 1 === 0 }
+					isDisabled={current - 1 === 0}
 					icon={<FiChevronLeft />}
 				/>
 			</Tooltip>
@@ -19,7 +19,7 @@ function Pagination({ current = 0, total = 0, setPage }: IPagination) {
 				<Text mr={8}>
 					Página{' '}
 					<Text fontWeight="bold" as="span">
-						{total === 0 ? 0 : current }
+						{total === 0 ? 0 : current}
 					</Text>{' '}
 					de{' '}
 					<Text fontWeight="bold" as="span">
@@ -31,9 +31,9 @@ function Pagination({ current = 0, total = 0, setPage }: IPagination) {
 			<Tooltip label="Próxima Página">
 				<IconButton
 					icon={<FiChevronRight />}
-					aria-label="Página Anterior"
+					aria-label="Próxima Página"
 					onClick={() => setPage(current + 1)}
-					isDisabled={current + 1 === total}
+					isDisabled={current === total }
 				/>
 			</Tooltip>
 		</Flex>
