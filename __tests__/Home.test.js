@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Home from '../src/modules/Home';
 import { fetchMock } from '../utils/mock';
+// import 
 
 jest.mock('next/router', () => require('next-router-mock'));
 
@@ -24,6 +25,6 @@ describe('Testes da página inicial', () => {
 	});
 
 	it('Confere a chamada da função da API', async () => {
-		
+
 	});
 });
