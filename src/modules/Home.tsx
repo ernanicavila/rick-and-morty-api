@@ -36,7 +36,7 @@ export default function Home() {
 			},
 		},
 	);
-	console.log(getAll.data?.data);
+	console.log(getAll);
 	return (
 		<>
 			<Layout>
@@ -61,7 +61,7 @@ export default function Home() {
 						justifyContent={{ base: 'center', md: 'space-between' }}
 						flexWrap="wrap"
 					>
-						{getAll.data?.data?.results.map((el: IgetAll) => (
+						{getAll.data?.data?.results?.map((el: IgetAll) => (
 							<CharacterCard
 								name={el.name}
 								image={el.image}
