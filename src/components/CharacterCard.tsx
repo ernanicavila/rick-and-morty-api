@@ -6,9 +6,10 @@ function CharacterCard({ name, status, image, onClick }: IgetAll) {
 		<>
 			<Flex
 				p="8px"
-				m='8px 0px'
+				m="8px 0px"
 				justifyContent="space-between"
 				border="1px solid black"
+				rounded="md"
 				w="350px"
 			>
 				<Flex flexDir="column" justifyContent="center">
@@ -24,7 +25,13 @@ function CharacterCard({ name, status, image, onClick }: IgetAll) {
 						Visualizar Perfil
 					</Button>
 				</Flex>
-				<Image w="150px" src={image} alt={`foto de ${name}`} />
+				<Image
+					w={{ base: '50%', md: '150px' }}
+					minWidth="75px"
+					src={image}
+					alt={`foto de ${name}`}
+					rounded="md"
+				/>
 			</Flex>
 		</>
 	);

@@ -5,7 +5,7 @@ class Characters {
 		return api.get(`/character?name=${search}&page=${page}`);
 	}
 
-	getById(id: string): Promise<object> {
+	getById(id: number) {
 		return api.get(`/character/${id}`);
 	}
 }

@@ -14,4 +14,16 @@ interface IPagination {
 	setPage: Function;
 }
 
-export type { IgetAll, IPagination };
+interface ICharacterDetail {
+	data?: object;
+	id: string;
+	gender: string;
+	image: string;
+	location: object;
+	name: string;
+	origin: string;
+	species: string;
+	type: string;
+	url?: string;
+}
+export type { IgetAll, IPagination, ICharacterDetail };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Layout from '@/components/Layout';
 import characterService from '@/services/Characters';
-import { Heading, Flex, Input } from '@chakra-ui/react';
+import { Heading, Flex, Input, Box } from '@chakra-ui/react';
 import { IgetAll } from '@/interfaces';
 import CharacterCard from '@/components/CharacterCard';
 import { useRouter } from 'next/router';
@@ -40,37 +40,40 @@ export default function Home() {
 	return (
 		<>
 			<Layout>
-				<Heading
-					textAlign="center"
-					m="32px"
-					fontSize={{ base: '18px', md: '24px' }}
-				>
-					Rick And Morty Database
-				</Heading>
+				<Box m="24px">
+					<Heading
+						textAlign="center"
+						m="32px"
+						fontSize={{ base: '18px', md: '24px' }}
+					>
+						Rick And Morty Database
+					</Heading>
 
-				<Pagination current={page} total={meta?.total} setPage={setPage} />
-
-				<Flex w="350px">
-					<Input
-						value={search}
-						onChange={({ target: { value } }) => setSearch(value)}
-					/>
-				</Flex>
-				<Flex
-					mx="auto"
-					m="24px"
-					justifyContent={{ base: 'center', md: 'space-between' }}
-					flexWrap="wrap"
-				>
-					{getAll.data?.data?.results.map((el: IgetAll) => (
-						<CharacterCard
-							name={el.name}
-							image={el.image}
-							key={el.id}
-							status={el.status}
-							onClick={() => route.push(`/characters/${el.id}`)}
+					<Flex w={{ base: '100%', md: '350px' }}>
+						<Input
+							value={search}
+							onChange={({ target: { value } }) => setSearch(value)}
+							placeholder="Digite o nome do personagem"
 						/>
-					))}
+					</Flex>
+					<Flex
+						mx="auto"
+						justifyContent={{ base: 'center', md: 'space-between' }}
+						flexWrap="wrap"
+					>
+						{getAll.data?.data?.results.map((el: IgetAll) => (
+							<CharacterCard
+								name={el.name}
+								image={el.image}
+								key={el.id}
+								status={el.status}
+								onClick={() => route.push(`/characters/${el.id}`)}
+							/>
+						))}
+					</Flex>
+				</Box>
+				<Flex mx="auto" p="16px">
+					<Pagination current={page} total={meta?.total} setPage={setPage} />
 				</Flex>
 			</Layout>
 		</>

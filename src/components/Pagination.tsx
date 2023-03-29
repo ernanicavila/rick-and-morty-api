@@ -12,11 +12,12 @@ function Pagination({ current = 0, total = 0, setPage }: IPagination) {
 					onClick={() => setPage(current - 1)}
 					isDisabled={current - 1 === 0}
 					icon={<FiChevronLeft />}
+					colorScheme="blue"
 				/>
 			</Tooltip>
 
 			<Flex alignItems="center">
-				<Text mr={8}>
+				<Text m="0 8px">
 					Página{' '}
 					<Text fontWeight="bold" as="span">
 						{total === 0 ? 0 : current}
@@ -33,7 +34,8 @@ function Pagination({ current = 0, total = 0, setPage }: IPagination) {
 					icon={<FiChevronRight />}
 					aria-label="Próxima Página"
 					onClick={() => setPage(current + 1)}
-					isDisabled={current === total }
+					isDisabled={current === total}
+					colorScheme="blue"
 				/>
 			</Tooltip>
 		</Flex>
