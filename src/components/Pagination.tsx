@@ -3,7 +3,6 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { IPagination } from '@/interfaces';
 
 function Pagination({ current = 0, total = 0, setPage }: IPagination) {
-	console.log('pagination', current, total);
 	return (
 		<Flex>
 			<Tooltip label="Página Anterior">

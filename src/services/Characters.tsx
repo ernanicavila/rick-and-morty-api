@@ -1,8 +1,10 @@
 import api from './api';
 
 class Characters {
-	list({ search = '', page = 0 }) {
-		return api.get(`/character?name=${search}&page=${page}`);
+	list({ search = '', page = 0, status = '', gender = '' }) {
+		return api.get(
+			`/character?name=${search}&page=${page}&status=${status}&gender=${gender}`,
+		);
 	}
 
 	getById(id: number) {

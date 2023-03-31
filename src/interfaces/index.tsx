@@ -6,6 +6,8 @@ interface IgetAll {
 	image: string;
 	status: string;
 	onClick: MouseEventHandler<HTMLButtonElement>;
+	favClick: any;
+	isChecked: boolean;
 }
 
 interface IPagination {
@@ -15,15 +17,36 @@ interface IPagination {
 }
 
 interface ICharacterDetail {
-	data?: object;
-	id: string;
+	created: string;
+	episode: Array<string>;
 	gender: string;
+	id: number;
 	image: string;
 	location: object;
-	name: string;
-	origin: string;
+	origin: object;
 	species: string;
+	status: string;
 	type: string;
-	url?: string;
+	url: string;
+	name: string;
 }
-export type { IgetAll, IPagination, ICharacterDetail };
+
+interface IFavorites {
+	id: number;
+	data?: {
+		id: number;
+		created: string;
+		episode: Array<string>;
+		gender: string;
+		image: string;
+		location: object;
+		origin: object;
+		species: string;
+		status: string;
+		type: string;
+		url: string;
+		name: string;
+	};
+}
+
+export type { IgetAll, IPagination, ICharacterDetail, IFavorites };

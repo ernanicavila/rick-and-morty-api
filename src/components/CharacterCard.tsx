@@ -1,7 +1,14 @@
 import React from 'react';
-import { Text, Image, Flex, Button, Box } from '@chakra-ui/react';
+import { Text, Image, Flex, Button, Checkbox } from '@chakra-ui/react';
 import { IgetAll } from '@/interfaces';
-function CharacterCard({ name, status, image, onClick }: IgetAll) {
+function CharacterCard({
+	name,
+	status,
+	image,
+	onClick,
+	favClick,
+	isChecked,
+}: IgetAll) {
 	return (
 		<Flex
 			p="8px"
@@ -14,12 +21,17 @@ function CharacterCard({ name, status, image, onClick }: IgetAll) {
 			<Flex flexDir="column" justifyContent="center">
 				<Text>Nome: {name}</Text>
 				<Text>Status: {status}</Text>
+				<Checkbox type="checkbox" onChange={favClick} isChecked={isChecked}>
+					Favoritar
+				</Checkbox>
 				<Button
 					mt="8px"
 					as="button"
+					name="Visualizar Perfil"
 					size="sm"
 					colorScheme="green"
 					onClick={onClick}
+					w="150px"
 				>
 					Visualizar Perfil
 				</Button>
