@@ -6,6 +6,7 @@ import favService from '@/services/Favorites';
 import { useRouter } from 'next/router';
 import { ICharacterDetail } from '@/interfaces';
 import { useQuery } from 'react-query';
+import Loading from '@/components/Loading';
 function Favorites() {
 	const [fav, setFav] = useState<object[]>([]);
 	const route = useRouter();
@@ -34,6 +35,7 @@ function Favorites() {
 			getFavorites.refetch();
 		}
 	};
+	console.log(getFavorites?.data?.length);
 	return (
 		<Layout>
 			<Box m="24px">
@@ -49,17 +51,25 @@ function Favorites() {
 					justifyContent={{ base: 'center', md: 'space-between' }}
 					flexWrap="wrap"
 				>
-					{getFavorites?.data?.map((el: ICharacterDetail) => (
-						<CharacterCard
-							name={el.name}
-							image={el.image}
-							key={el.id}
-							status={el.status}
-							onClick={() => route.push(`/characters/${el.id}`)}
-							favClick={() => handleFavorite(el)}
-							isChecked={fav.some((c: any) => c.id === el.id)}
-						/>
-					))}
+					{getFavorites?.data?.length ? (
+						<>
+							{getFavorites?.data?.map((el: ICharacterDetail) => (
+								<CharacterCard
+									name={el.name}
+									image={el.image}
+									key={el.id}
+									status={el.status}
+									onClick={() => route.push(`/characters/${el.id}`)}
+									favClick={() => handleFavorite(el)}
+									isChecked={fav.some((c: any) => c.id === el.id)}
+								/>
+							))}
+						</>
+					) : (
+						<Box mx="auto">
+							<Loading text="Oops... O Rick esqueceu de carregar a arma de portal, aguarde por favor." />
+						</Box>
+					)}
 				</Flex>
 			</Box>
 		</Layout>

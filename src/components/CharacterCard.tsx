@@ -17,6 +17,7 @@ function CharacterCard({
 			border="1px solid black"
 			rounded="md"
 			w="350px"
+			backgroundColor='white'
 		>
 			<Flex flexDir="column" justifyContent="center">
 				<Text>Nome: {name}</Text>

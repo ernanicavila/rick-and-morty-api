@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import Pagination from '@/components/Pagination';
 import useDebounce from '@/components/Debounce';
 import favService from '@/services/Favorites';
+import Loading from '@/components/Loading';
 
 export default function Home() {
 	const route = useRouter();
@@ -96,8 +97,10 @@ export default function Home() {
 										setSearch({ ...search, name: value })
 									}
 									placeholder="Nome do personagem"
+									backgroundColor="white"
 								/>
 								<Select
+									backgroundColor="white"
 									value={search.status}
 									w={{ base: '100%', md: '300px' }}
 									placeholder="Status"
@@ -110,6 +113,7 @@ export default function Home() {
 									<option value="unknown">Desconhecido</option>
 								</Select>
 								<Select
+									backgroundColor="white"
 									onChange={({ target: { value } }) =>
 										setSearch({ ...search, gender: value })
 									}
@@ -133,17 +137,25 @@ export default function Home() {
 						justifyContent={{ base: 'center', md: 'space-between' }}
 						flexWrap="wrap"
 					>
-						{getAll?.data?.data?.results?.map((el: ICharacterDetail) => (
-							<CharacterCard
-								name={el.name}
-								image={el.image}
-								key={el.id}
-								status={el.status}
-								onClick={() => route.push(`/characters/${el.id}`)}
-								favClick={() => handleFavorite(el)}
-								isChecked={fav.some((c: any) => c.id === el.id)}
-							/>
-						))}
+						{getAll?.data?.data?.results.length ? (
+							<>
+								{getAll?.data?.data?.results?.map((el: ICharacterDetail) => (
+									<CharacterCard
+										name={el.name}
+										image={el.image}
+										key={el.id}
+										status={el.status}
+										onClick={() => route.push(`/characters/${el.id}`)}
+										favClick={() => handleFavorite(el)}
+										isChecked={fav.some((c: any) => c.id === el.id)}
+									/>
+								))}
+							</>
+						) : (
+							<Box m="60px auto">
+								<Loading text="Carregando" />
+							</Box>
+						)}
 					</Flex>
 				</Box>
 				<Flex mx="auto" p="16px">
