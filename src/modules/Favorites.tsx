@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
-import { Box, Text, Image, Flex, Heading } from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 import CharacterCard from '@/components/CharacterCard';
 import favService from '@/services/Favorites';
 import { useRouter } from 'next/router';
@@ -36,18 +36,32 @@ function Favorites() {
 	};
 	return (
 		<Layout>
-			<Heading>Favoritos</Heading>
-			{getFavorites?.data?.map((el: ICharacterDetail) => (
-				<CharacterCard
-					name={el.name}
-					image={el.image}
-					key={el.id}
-					status={el.status}
-					onClick={() => route.push(`/characters/${el.id}`)}
-					favClick={() => handleFavorite(el)}
-					isChecked={fav.some((c: any) => c.id === el.id)}
-				/>
-			))}
+			<Box m="24px">
+				<Heading
+					textAlign="center"
+					m="32px"
+					fontSize={{ base: '18px', md: '24px' }}
+				>
+					Favoritos
+				</Heading>
+				<Flex
+					mx="auto"
+					justifyContent={{ base: 'center', md: 'space-between' }}
+					flexWrap="wrap"
+				>
+					{getFavorites?.data?.map((el: ICharacterDetail) => (
+						<CharacterCard
+							name={el.name}
+							image={el.image}
+							key={el.id}
+							status={el.status}
+							onClick={() => route.push(`/characters/${el.id}`)}
+							favClick={() => handleFavorite(el)}
+							isChecked={fav.some((c: any) => c.id === el.id)}
+						/>
+					))}
+				</Flex>
+			</Box>
 		</Layout>
 	);
 }

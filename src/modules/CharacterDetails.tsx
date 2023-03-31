@@ -3,10 +3,14 @@ import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import characterService from '@/services/Characters';
 import Layout from '@/components/Layout';
-import { Box, Text, Image, Flex } from '@chakra-ui/react';
+import { Box, Text, Image, Flex, Link, Icon } from '@chakra-ui/react';
+import { FiArrowLeft } from 'react-icons/fi';
+
 export default function CharacterDetails() {
-	const { query } = useRouter();
-	const { id } = query;
+	const route = useRouter();
+	const {
+		query: { id },
+	} = route;
 
 	const getCharacter = useQuery(['getCharacter', id], () =>
 		characterService.getById(Number(id)),
@@ -15,6 +19,15 @@ export default function CharacterDetails() {
 	return (
 		<Layout>
 			<Box>
+				<Flex p="16px" alignItems="center">
+					<Icon fontSize="16px" as={FiArrowLeft} />
+					<Link
+						fontSize={{ base: '16px', md: '18px' }}
+						onClick={() => route.back()}
+					>
+						Voltar para página anterior
+					</Link>
+				</Flex>
 				<Flex
 					p="8px"
 					m={{ base: 'none', md: '0 auto' }}

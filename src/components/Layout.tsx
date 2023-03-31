@@ -11,7 +11,6 @@ function Layout({ children }: React.PropsWithChildren) {
 				</Flex>
 			</Box>
 			<Flex
-				border="1px solid purple"
 				flexDir="column"
 				mx="auto"
 			>
