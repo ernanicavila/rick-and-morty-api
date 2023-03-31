@@ -7,7 +7,7 @@ function Layout({ children }: React.PropsWithChildren) {
 			<Box p="8px" borderBottom="1px solid black">
 				<Flex justifyContent="space-between" w="150px">
 					<Link href="/">Home</Link>
-					<Link href="#">Personagens</Link>
+					<Link href="/favorites">Favoritos</Link>
 				</Flex>
 			</Box>
 			<Flex

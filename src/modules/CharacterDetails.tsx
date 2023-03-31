@@ -12,8 +12,6 @@ export default function CharacterDetails() {
 		characterService.getById(Number(id)),
 	);
 
-	console.log(getCharacter);
-
 	return (
 		<Layout>
 			<Box>
