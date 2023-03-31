@@ -17,9 +17,16 @@ function CharacterCard({
 			border="1px solid black"
 			rounded="md"
 			w="350px"
-			backgroundColor='white'
+			backgroundColor="white"
 		>
-			<Flex flexDir="column" justifyContent="center">
+			<Flex
+				// border="1px solid black"
+				w="60%"
+				mx="auto"
+				flexDir="column"
+				justifyContent="center"
+				p='8px'
+			>
 				<Text>Nome: {name}</Text>
 				<Text>Status: {status}</Text>
 				<Checkbox type="checkbox" onChange={favClick} isChecked={isChecked}>
@@ -32,13 +39,13 @@ function CharacterCard({
 					size="sm"
 					colorScheme="green"
 					onClick={onClick}
-					w="150px"
+					w={{ base: '125px', md: '150px' }}
 				>
-					Visualizar Perfil
+					Visualizar Perfill
 				</Button>
 			</Flex>
 			<Image
-				w={{ base: '50%', md: '150px' }}
+				w={{ base: '40%', md: '150px' }}
 				minWidth="75px"
 				src={image}
 				alt={`foto de ${name}`}

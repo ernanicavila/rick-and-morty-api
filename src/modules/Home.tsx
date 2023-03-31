@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Layout from '@/components/Layout';
 import characterService from '@/services/Characters';
-import { Heading, Flex, Input, Box, Button, Select } from '@chakra-ui/react';
+import {
+	Heading,
+	Flex,
+	Input,
+	Box,
+	Button,
+	Select,
+	Text,
+} from '@chakra-ui/react';
 import { ICharacterDetail } from '@/interfaces';
 import CharacterCard from '@/components/CharacterCard';
 import { useRouter } from 'next/router';
@@ -21,6 +29,7 @@ export default function Home() {
 	const [fav, setFav] = useState<object[]>([]);
 	const [page, setPage] = useState(1);
 	const searchTerms = useDebounce(search?.name, 500);
+	const [error, setError] = useState<Error>();
 	const [meta, setMeta] = useState({
 		current: 0,
 		total: 0,
@@ -43,11 +52,16 @@ export default function Home() {
 					total: data?.info?.pages,
 				});
 			},
+			onError: (error: any) => {
+				setError(error);
+			},
+			retry: false,
 		},
 	);
 
 	const handleClick = () => {
 		getAll.refetch();
+		setError(undefined);
 		setPage(1);
 	};
 	const handleFavorite = (el: any): void => {
@@ -84,7 +98,9 @@ export default function Home() {
 					</Heading>
 
 					<Box>
-						<Heading fontSize={{ base: '16px', md: '18px' }}>Filtros</Heading>
+						<Heading m="8px 0px" fontSize={{ base: '16px', md: '18px' }}>
+							Filtros
+						</Heading>
 						<Flex
 							flexDir={{ base: 'column', md: 'row' }}
 							w={{ base: '100%', md: '1000px' }}
@@ -127,12 +143,21 @@ export default function Home() {
 									<option value="unknown">Desconhecido</option>
 								</Select>
 							</Flex>
-							<Button colorScheme="blue" w="100px" onClick={handleClick}>
+							<Button
+								mt={{ base: '8px', md: '0px' }}
+								colorScheme="blue"
+								w="100px"
+								onClick={handleClick}
+							>
 								Filtrar
 							</Button>
 						</Flex>
 					</Box>
+					{error?.message && (
+						<Text color="red">O personagem procurado não existe!</Text>
+					)}
 					<Flex
+						mt="20px"
 						mx="auto"
 						justifyContent={{ base: 'center', md: 'space-between' }}
 						flexWrap="wrap"

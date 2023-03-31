@@ -26,7 +26,7 @@ describe('Testes da página inicial', () => {
 
 	it('Confere o fluxo de filtro funciona', async () => {
 		render(<Home />);
-		const input = screen.getByPlaceholderText(/digite o nome do personagem/i);
+		const input = screen.getByPlaceholderText(/nome do personagem/i);
 		expect(input).toBeInTheDocument();
 
 		await userEvent.type(input, 'Rick Sanchez');
