@@ -52,7 +52,7 @@ export default function Home() {
 	const handleFavorite = (el: any): void => {
 		const array = [...fav, el];
 		const get = favService.get();
-		const check = get.some((e: { id: number }) => e.id === el.id);
+		const check = get?.some((e: { id: number }) => e.id === el.id);
 
 		if (check) {
 			const filtered = array.filter((e: any) => e.id !== el.id);
