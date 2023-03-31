@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Home from '../src/modules/Home';
-import { fetchMock, fetchPagination } from '../utils/mock';
+import { fetchPagination } from '../utils/mock';
 import userEvent from '@testing-library/user-event';
 
 jest.mock('next/router', () => require('next-router-mock'));
