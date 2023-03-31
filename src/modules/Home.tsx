@@ -159,7 +159,7 @@ export default function Home() {
 					<Flex
 						mt="20px"
 						mx="auto"
-						justifyContent={{ base: 'center', md: 'space-between' }}
+						justifyContent={{ base: 'center', md: 'space-evenly' }}
 						flexWrap="wrap"
 					>
 						{getAll?.data?.data?.results.length ? (

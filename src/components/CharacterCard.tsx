@@ -18,15 +18,9 @@ function CharacterCard({
 			rounded="md"
 			w="350px"
 			backgroundColor="white"
+			boxShadow="md"
 		>
-			<Flex
-				// border="1px solid black"
-				w="60%"
-				mx="auto"
-				flexDir="column"
-				justifyContent="center"
-				p='8px'
-			>
+			<Flex w="60%" mx="auto" flexDir="column" justifyContent="center" p="8px">
 				<Text>Nome: {name}</Text>
 				<Text>Status: {status}</Text>
 				<Checkbox type="checkbox" onChange={favClick} isChecked={isChecked}>
@@ -37,7 +31,7 @@ function CharacterCard({
 					as="button"
 					name="Visualizar Perfil"
 					size="sm"
-					colorScheme="green"
+					colorScheme="blue"
 					onClick={onClick}
 					w={{ base: '125px', md: '150px' }}
 				>
@@ -45,6 +39,7 @@ function CharacterCard({
 				</Button>
 			</Flex>
 			<Image
+				h={{ base: '100%', md: '150px' }}
 				w={{ base: '40%', md: '150px' }}
 				minWidth="75px"
 				src={image}

@@ -17,7 +17,6 @@ function Favorites() {
 	}, []);
 
 	const getFavorites = useQuery('favorites', () => favService.get());
-	console.log(getFavorites);
 
 	const handleFavorite = (el: any): void => {
 		const array = [...fav, el];
@@ -35,7 +34,6 @@ function Favorites() {
 			getFavorites.refetch();
 		}
 	};
-	console.log(getFavorites?.data?.length);
 	return (
 		<Layout>
 			<Box m="24px">
@@ -48,7 +46,7 @@ function Favorites() {
 				</Heading>
 				<Flex
 					mx="auto"
-					justifyContent={{ base: 'center', md: 'space-between' }}
+					justifyContent={{ base: 'center', md: 'space-evenly' }}
 					flexWrap="wrap"
 				>
 					{getFavorites?.data?.length ? (
@@ -67,7 +65,7 @@ function Favorites() {
 						</>
 					) : (
 						<Box mx="auto">
-							<Loading text="Oops... O Rick esqueceu de carregar a arma de portal, aguarde por favor." />
+							<Loading text="Não existem favoritos!" />
 						</Box>
 					)}
 				</Flex>

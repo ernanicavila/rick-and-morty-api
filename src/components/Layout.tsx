@@ -3,7 +3,7 @@ import { Box, Link, Flex } from '@chakra-ui/react';
 
 function Layout({ children }: React.PropsWithChildren) {
 	return (
-		<Box backgroundColor="#EBF8FF" h="100%">
+		<Box backgroundColor="#EBF8FF" minH="100vh" h="100%">
 			<Box boxShadow="lg" p="8px" borderBottom="1px solid black">
 				<Flex justifyContent="space-between" w={{ base: '200px', md: '150px' }}>
 					<Link href="/">Home</Link>

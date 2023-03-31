@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import characterService from '@/services/Characters';
 import Layout from '@/components/Layout';
-import { Box, Text, Image, Flex, Link, Icon } from '@chakra-ui/react';
+import { Box, Text, Image, Flex, Link, Icon, Checkbox } from '@chakra-ui/react';
 import { FiArrowLeft } from 'react-icons/fi';
+import favService from '@/services/Favorites';
 
 export default function CharacterDetails() {
 	const route = useRouter();
@@ -15,7 +16,32 @@ export default function CharacterDetails() {
 	const getCharacter = useQuery(['getCharacter', id], () =>
 		characterService.getById(Number(id)),
 	);
+	const [fav, setFav] = useState<object[]>([]);
 
+	const getFavorites = useQuery('favorites', () => favService.get());
+
+	useEffect(() => {
+		const fav = favService.get();
+		setFav(fav);
+	}, []);
+
+	const handleFavorite = (el: any): void => {
+		const array = [...fav, el];
+		const get = favService.get();
+		const check = get?.some((e: { id: number }) => e.id === el.id);
+
+		if (check) {
+			const filtered = array.filter((e: any) => e.id !== el.id);
+			setFav(filtered);
+			favService.create(filtered);
+			getFavorites.refetch();
+		} else {
+			setFav(array);
+			favService.create(array);
+			getFavorites.refetch();
+		}
+	};
+	console.log(getCharacter?.data?.data.id);
 	return (
 		<Layout>
 			<Box>
@@ -29,12 +55,18 @@ export default function CharacterDetails() {
 					</Link>
 				</Flex>
 				<Flex
+					bgColor="white"
+					border="1px solid black"
+					rounded="md"
+					boxShadow="lg"
+					mx="auto"
 					p="8px"
 					m={{ base: 'none', md: '0 auto' }}
-					w={{ base: '100%', md: '700px' }}
+					w={{ base: '90%', md: '700px' }}
 					flexDir={{ base: 'column', md: 'row' }}
 				>
 					<Image
+						mx="auto"
 						w="350px"
 						rounded="md"
 						src={getCharacter?.data?.data?.image}
@@ -51,9 +83,18 @@ export default function CharacterDetails() {
 						<Text>Origem: {getCharacter?.data?.data?.origin.name}</Text>
 						<Text>Localização: {getCharacter?.data?.data?.location.name}</Text>
 						<Text>
-							Episódios em que aparece:
+							Episódios em que aparece:{' '}
 							{getCharacter?.data?.data?.episode.length}
 						</Text>
+						<Checkbox
+							type="checkbox"
+							onChange={() => handleFavorite(getCharacter?.data?.data)}
+							isChecked={fav.some(
+								(c: any) => c.id === getCharacter?.data?.data?.id,
+							)}
+						>
+							Favoritar
+						</Checkbox>
 					</Box>
 				</Flex>
 			</Box>
