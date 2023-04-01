@@ -12,9 +12,14 @@ import {
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router';
+
+import { useAppDispatch } from '../Redux/hooks';
+import { addEmail } from '../Redux/slice';
 const Login = () => {
 	const [loading, setLoading] = useState(false);
 	const route = useRouter();
+	const dispatch = useAppDispatch();
+
 	const formik = useFormik({
 		initialValues: {
 			email: '',
@@ -29,16 +34,13 @@ const Login = () => {
 				.min(6, 'Necessário no minimo 6 caracteres'),
 		}),
 		onSubmit: async (values) => {
-			console.log(values);
-
 			try {
 				setLoading(true);
 
-				// const response = await api.post(process.env.NEXT_PUBLIC_SERVER_URL, {
-				//   email: formik.values.email,
-				//   password: formik.values.password,
-				// });
+				dispatch(addEmail(values.email));
+
 				route.push('/home');
+
 				setLoading(false);
 			} catch (e) {
 				formik.setErrors({ password: 'Email ou senha estão incorretos' });

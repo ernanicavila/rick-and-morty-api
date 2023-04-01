@@ -8,19 +8,45 @@ import {
 	MenuList,
 	MenuItem,
 	IconButton,
+	Image,
 } from '@chakra-ui/react';
 import { FiMenu, FiHome } from 'react-icons/fi';
+import { useAppSelector } from '@/Redux/hooks';
+import { selectUser } from '@/Redux/slice';
+import md5 from 'crypto-js/md5';
+
 function Layout({ children }: React.PropsWithChildren) {
+	const {
+		user: { email },
+	} = useAppSelector(selectUser);
 	return (
 		<Box backgroundColor="#EBF8FF" minH="100vh" h="100%">
 			<Box boxShadow="lg" p="8px" borderBottom="1px solid black">
 				<Flex
-					display={{ base: 'none', md: 'flex' }}
+					w="100%"
+					p="8px"
 					justifyContent="space-between"
-					w={{ base: '200px', md: '150px' }}
+					alignItems="center"
 				>
-					<Link href="/home">Home</Link>
-					<Link href="/favorites">Favoritos</Link>
+					<Flex
+						display={{ base: 'none', md: 'flex' }}
+						justifyContent="space-between"
+						w={{ base: '200px', md: '150px' }}
+					>
+						<Link href="/home">Home</Link>
+						<Link href="/favorites">Favoritos</Link>
+					</Flex>
+					<Flex alignItems="center">
+						{email}
+						<Image
+							ml="16px"
+							rounded="100%"
+							w="50px"
+							h="50px"
+							src={`https://www.gravatar.com/avatar/${md5(String(email))}`}
+							alt="user avatar"
+						/>
+					</Flex>
 				</Flex>
 				<Box display={{ base: 'flex', md: 'none' }}>
 					<Menu>
