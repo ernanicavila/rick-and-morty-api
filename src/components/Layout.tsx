@@ -19,7 +19,7 @@ function Layout({ children }: React.PropsWithChildren) {
 					justifyContent="space-between"
 					w={{ base: '200px', md: '150px' }}
 				>
-					<Link href="/">Home</Link>
+					<Link href="/home">Home</Link>
 					<Link href="/favorites">Favoritos</Link>
 				</Flex>
 				<Box display={{ base: 'flex', md: 'none' }}>
