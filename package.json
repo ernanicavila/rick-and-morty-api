@@ -7,7 +7,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"test": "jest --coverage --"
+		"test": "jest --coverage --watch",
+		"test2": "jest --watch"
 	},
 	"dependencies": {
 		"@chakra-ui/react": "^2.5.4",
@@ -39,5 +40,8 @@
 		"react-redux": "^8.0.5",
 		"typescript": "^4.9.5",
 		"yup": "^1.0.2"
+	},
+	"devDependencies": {
+		"jest-mock-axios": "^4.7.1"
 	}
 }

@@ -1,63 +1,89 @@
-import { render, screen } from '@testing-library/react';
-import Home from '../src/modules/Home';
-import { fetchPagination } from '../utils/mock';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
+import { store } from '../src/Redux/store';
+import Home from '../src/modules/Home';
+import { fetchRick, fetchPagination, teste } from '../utils/mock';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import mockAxios from 'jest-mock-axios';
 
 jest.mock('next/router', () => require('next-router-mock'));
 
-jest.mock('react-query', () => ({
-	useQuery: () => ({
-		isLoading: false,
-		error: {},
-		data: { data: { results: fetchPagination } },
-	}),
-}));
+describe('Testes da tela de Home', () => {
+	const query = new QueryClient();
+	it('Testa o fluxo completo de Home', async () => {
+		const { debug } = render(
+			<QueryClientProvider client={query}>
+				<Provider store={store}>
+					<Home />
+				</Provider>
+			</QueryClientProvider>,
+		);
+		mockAxios.get.mockResolvedValueOnce();
 
-describe('Testes da página inicial', () => {
-	it('Verifica se a API é corretamente chamada', async () => {
-		render(<Home />);
-
-		const title = screen.getByText(/rick and morty database/i);
-		const rick = screen.getByText(/nome: rick sanchez/i);
-
-		expect(rick).toBeInTheDocument();
-		expect(title).toBeInTheDocument();
-	});
-
-	it('Confere o fluxo de filtro funciona', async () => {
-		render(<Home />);
-		const input = screen.getByPlaceholderText(/nome do personagem/i);
-		expect(input).toBeInTheDocument();
-
-		await userEvent.type(input, 'Rick Sanchez');
-		expect(input).toHaveValue('Rick Sanchez');
-
-		const rick = screen.getByText(/nome: rick sanchez/i);
-		expect(rick).toBeInTheDocument();
-
-		await userEvent.type(input, 'Rick Sanchez');
-		const button = screen.getAllByRole('button', {
-			name: /Visualizar Perfil/i,
-		})[0];
-
-		await userEvent.click(button);
-	});
-
-	it('Verifica a paginação', async () => {
-		render(<Home />);
-		const check1 = screen.getByText(/rick sanchez/i);
-		const check2 = screen.getByText(/Ants in my Eyes Johnson The Seccond/i);
-
-		const btn1 = screen.getByRole('button', {
-			name: /próxima página/i,
+		await waitFor(() => {
+			screen.getByText(/annie/i);
+			// debug();
 		});
-		const btn2 = screen.getByRole('button', {
-			name: /página anterior/i,
+		const search = screen.getByPlaceholderText(/nome do personagem/i);
+		const btn = screen.getByRole('button', {
+			name: /filtrar/i,
 		});
 
-		expect(check1).toBeInTheDocument();
-		await userEvent.click(btn1);
-		expect(check2).toBeInTheDocument();
-		await userEvent.click(btn2);
+		await waitFor(async () => {
+			await userEvent.type(search, 'Annie');
+			expect(search).toHaveValue('Annie');
+		});
+
+		await userEvent.click(btn);
+		await waitFor(async () => {
+			const btns = screen.getAllByRole('button', {
+				name: /visualizar perfil/i,
+			});
+			expect(btns).toHaveLength(2);
+			debug();
+		});
+
+		// const email = await screen.findByRole('textbox', {
+		// 	name: /email/i,
+		// });
+		// const password = screen.getByLabelText(/senha/i);
+		// const btn = screen.getByRole('button', {
+		// 	name: /entrar/i,
+		// });
+
+		// await waitFor(async () => {
+		// 	await userEvent.type(email, INVALID_EMAIL);
+		// 	screen.getByText(/Email está no formato invalido/i);
+		// });
+
+		// await waitFor(async () => {
+		// 	await userEvent.clear(email);
+		// 	screen.getByText(/campo obrigatório/i);
+		// });
+
+		// await waitFor(async () => {
+		// 	await userEvent.type(email, VALID_EMAIL);
+		// 	expect(email).toHaveValue(VALID_EMAIL);
+		// });
+
+		// await waitFor(async () => {
+		// 	await userEvent.type(password, INVALID_PASSWORD);
+		// 	screen.getByText(/Necessário no minimo 6 caracteres/i);
+		// });
+
+		// await waitFor(async () => {
+		// 	await userEvent.clear(password);
+		// 	screen.getByText(/Necessário a utilização de senha/i);
+		// });
+
+		// await waitFor(async () => {
+		// 	await userEvent.type(password, VALID_PASSWORD);
+		// 	expect(password).toHaveValue(VALID_PASSWORD);
+		// });
+
+		// await waitFor(async () => {
+		// 	await userEvent.click(btn);
+		// });
 	});
 });

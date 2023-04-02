@@ -16,13 +16,13 @@ const theme = extendTheme({ breakpoints });
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<Provider store={store}>
-			<QueryClientProvider client={new QueryClient()}>
+		<QueryClientProvider client={new QueryClient()}>
+			<Provider store={store}>
 				<ChakraProvider theme={theme}>
 					<title>Green Acesso Test</title>
 					<Component {...pageProps} />
 				</ChakraProvider>
-			</QueryClientProvider>
-		</Provider>
+			</Provider>
+		</QueryClientProvider>
 	);
 }

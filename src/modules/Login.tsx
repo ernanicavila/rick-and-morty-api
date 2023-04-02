@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-	Link,
+	Flex,
 	Box,
 	Button,
 	Input,
@@ -34,29 +34,19 @@ const Login = () => {
 				.min(6, 'Necessário no minimo 6 caracteres'),
 		}),
 		onSubmit: async (values) => {
-			try {
-				setLoading(true);
+			setLoading(true);
 
-				dispatch(addEmail(values.email));
+			dispatch(addEmail(values.email));
 
-				route.push('/home');
+			route.push('/home');
 
-				setLoading(false);
-			} catch (e) {
-				formik.setErrors({ password: 'Email ou senha estão incorretos' });
-				setLoading(false);
-			}
+			setLoading(false);
 		},
 	});
 
 	return (
 		<form onSubmit={formik.handleSubmit}>
-			<Box
-				alignContent="center"
-				m="0 auto"
-				mt="34px"
-				w={{ base: 320, sm: 400, md: 500 }}
-			>
+			<Box p="16px" mt="5%" mx="auto" w={{ base: 320, sm: 400, md: 500 }}>
 				<FormControl mt="16px" isInvalid={!!formik.errors.email}>
 					<FormLabel>Email </FormLabel>
 					<Input
@@ -92,7 +82,6 @@ const Login = () => {
 					<Button
 						w="100%"
 						isLoading={loading}
-						// isFullWidth
 						colorScheme="blue"
 						m="0 auto"
 						type="submit"
