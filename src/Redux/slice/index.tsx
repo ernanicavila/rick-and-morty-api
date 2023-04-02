@@ -14,7 +14,6 @@ export const UserSlice = createSlice({
 		addEmail: (state, action: PayloadAction<string>) => {
 			const email = action.payload;
 			state.email = email;
-			console.log(action);
 		},
 	},
 	name: 'user',

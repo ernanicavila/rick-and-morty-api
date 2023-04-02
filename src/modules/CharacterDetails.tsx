@@ -41,7 +41,6 @@ export default function CharacterDetails() {
 			getFavorites.refetch();
 		}
 	};
-	console.log(getCharacter?.data?.data.id);
 	return (
 		<Layout>
 			<Box>
