@@ -116,6 +116,7 @@ function Home() {
 									backgroundColor="white"
 								/>
 								<Select
+									data-testid="selectStatus"
 									backgroundColor="white"
 									value={search.status}
 									w={{ base: '100%', md: '300px' }}
@@ -129,6 +130,7 @@ function Home() {
 									<option value="unknown">Desconhecido</option>
 								</Select>
 								<Select
+								data-testid="selectGenre"
 									backgroundColor="white"
 									onChange={({ target: { value } }) =>
 										setSearch({ ...search, gender: value })
