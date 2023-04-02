@@ -18,6 +18,7 @@ import Pagination from '@/components/Pagination';
 import useDebounce from '@/components/Debounce';
 import favService from '@/services/Favorites';
 import Loading from '@/components/Loading';
+import { AxiosError } from 'axios';
 
 function Home() {
 	const route = useRouter();
@@ -26,7 +27,7 @@ function Home() {
 		status: '',
 		gender: '',
 	});
-	const [fav, setFav] = useState<object[]>([]);
+	const [fav, setFav] = useState<ICharacterDetail[]>([]);
 	const [page, setPage] = useState(1);
 	const searchTerms = useDebounce(search?.name, 500);
 	const [error, setError] = useState<Error>();
@@ -52,7 +53,7 @@ function Home() {
 					total: data?.info?.pages,
 				});
 			},
-			onError: (error: any) => {
+			onError: (error: AxiosError) => {
 				setError(error);
 			},
 			retry: false,
@@ -64,7 +65,7 @@ function Home() {
 		setError(undefined);
 		setPage(1);
 	};
-	const handleFavorite = (el: any): void => {
+	const handleFavorite = (el: ICharacterDetail): void => {
 		const array = [...fav, el];
 		const get = favService.get();
 		const check = get?.some((e: { id: number }) => e.id === el.id);
@@ -130,7 +131,7 @@ function Home() {
 									<option value="unknown">Desconhecido</option>
 								</Select>
 								<Select
-								data-testid="selectGenre"
+									data-testid="selectGenre"
 									backgroundColor="white"
 									onChange={({ target: { value } }) =>
 										setSearch({ ...search, gender: value })
@@ -174,7 +175,7 @@ function Home() {
 										status={el.status}
 										onClick={() => route.push(`/characters/${el.id}`)}
 										favClick={() => handleFavorite(el)}
-										isChecked={fav.some((c: any) => c.id === el.id)}
+										isChecked={fav.some((c) => c.id === el.id)}
 									/>
 								))}
 							</>

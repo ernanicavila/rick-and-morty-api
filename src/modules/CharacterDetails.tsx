@@ -6,6 +6,7 @@ import Layout from '@/components/Layout';
 import { Box, Text, Image, Flex, Link, Icon, Checkbox } from '@chakra-ui/react';
 import { FiArrowLeft } from 'react-icons/fi';
 import favService from '@/services/Favorites';
+import { ICharacterDetail } from '../interfaces';
 
 export default function CharacterDetails() {
 	const route = useRouter();
@@ -16,7 +17,7 @@ export default function CharacterDetails() {
 	const getCharacter = useQuery(['getCharacter', id], () =>
 		characterService.getById(Number(id)),
 	);
-	const [fav, setFav] = useState<object[]>([]);
+	const [fav, setFav] = useState<ICharacterDetail[]>([]);
 
 	const getFavorites = useQuery('favorites', () => favService.get());
 
@@ -25,13 +26,13 @@ export default function CharacterDetails() {
 		setFav(fav);
 	}, []);
 
-	const handleFavorite = (el: any): void => {
+	const handleFavorite = (el: ICharacterDetail): void => {
 		const array = [...fav, el];
 		const get = favService.get();
 		const check = get?.some((e: { id: number }) => e.id === el.id);
 
 		if (check) {
-			const filtered = array.filter((e: any) => e.id !== el.id);
+			const filtered = array.filter((e) => e.id !== el.id);
 			setFav(filtered);
 			favService.create(filtered);
 			getFavorites.refetch();
@@ -89,7 +90,7 @@ export default function CharacterDetails() {
 							type="checkbox"
 							onChange={() => handleFavorite(getCharacter?.data?.data)}
 							isChecked={fav.some(
-								(c: any) => c.id === getCharacter?.data?.data?.id,
+								(c) => c.id === getCharacter?.data?.data?.id,
 							)}
 						>
 							Favoritar

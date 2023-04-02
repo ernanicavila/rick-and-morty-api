@@ -8,7 +8,7 @@ import { ICharacterDetail } from '@/interfaces';
 import { useQuery } from 'react-query';
 import Loading from '@/components/Loading';
 function Favorites() {
-	const [fav, setFav] = useState<object[]>([]);
+	const [fav, setFav] = useState<ICharacterDetail[]>([]);
 	const route = useRouter();
 
 	useEffect(() => {
@@ -18,13 +18,13 @@ function Favorites() {
 
 	const getFavorites = useQuery('favorites', () => favService.get());
 
-	const handleFavorite = (el: any): void => {
+	const handleFavorite = (el: ICharacterDetail): void => {
 		const array = [...fav, el];
 		const get = favService.get();
 		const check = get?.some((e: { id: number }) => e.id === el.id);
 
 		if (check) {
-			const filtered = array.filter((e: any) => e.id !== el.id);
+			const filtered = array.filter((e) => e.id !== el.id);
 			setFav(filtered);
 			favService.create(filtered);
 			getFavorites.refetch();
@@ -59,7 +59,7 @@ function Favorites() {
 									status={el.status}
 									onClick={() => route.push(`/characters/${el.id}`)}
 									favClick={() => handleFavorite(el)}
-									isChecked={fav.some((c: any) => c.id === el.id)}
+									isChecked={fav.some((c) => c.id === el.id)}
 								/>
 							))}
 						</>

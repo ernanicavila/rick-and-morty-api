@@ -31,22 +31,4 @@ interface ICharacterDetail {
 	name: string;
 }
 
-interface IFavorites {
-	id: number;
-	data?: {
-		id: number;
-		created: string;
-		episode: Array<string>;
-		gender: string;
-		image: string;
-		location: object;
-		origin: object;
-		species: string;
-		status: string;
-		type: string;
-		url: string;
-		name: string;
-	};
-}
-
-export type { IgetAll, IPagination, ICharacterDetail, IFavorites };
+export type { IgetAll, IPagination, ICharacterDetail };
