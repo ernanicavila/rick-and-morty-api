@@ -11,7 +11,7 @@ jest.mock('react-query', () => ({
 	useQuery: () => ({
 		isLoading: false,
 		error: {},
-		data: { data: { results: fetchPagination } },
+		data: {},
 	}),
 }));
 const INVALID_EMAIL = 'teste';

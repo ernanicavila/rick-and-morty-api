@@ -6,6 +6,8 @@ import Home from '../src/modules/Home';
 import { annie } from '../utils/mock';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
+jest.mock('next/router', () => require('next-router-mock'));
+
 jest.mock('axios', () => {
 	return {
 		create: jest.fn(() => ({
@@ -19,9 +21,6 @@ jest.mock('axios', () => {
 		})),
 	};
 });
-
-jest.mock('next/router', () => require('next-router-mock'));
-
 describe('Testes da tela de Home', () => {
 	const query = new QueryClient();
 	it('Testa o filtro da pesquisa', async () => {
@@ -58,8 +57,13 @@ describe('Testes da tela de Home', () => {
 			});
 			expect(btns).toHaveLength(1);
 		});
-		const btns = screen.getAllByRole('button', {
-			name: /visualizar perfil/i,
+
+		const btns = screen.getByRole('checkbox', {
+			name: /favoritar/i,
 		});
+		await userEvent.click(btns);
+
+		const local = JSON.parse(localStorage.getItem('favorites'));
+		expect(local).toHaveLength(1);
 	});
 });
