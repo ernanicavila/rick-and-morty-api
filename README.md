@@ -1,38 +1,93 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Green Acesso Test.
 
-## Getting Started
+Esse é um teste tecnico para a empresa Green Accees. A ideia do projeto é criar um frontend responsivo seguindo o design pronto pelo Adobe XD.
 
-First, run the development server:
+## Tecnologias Utilizadas
+
+**Client:**
+
+<img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white" alt="eslint-logo" />
+<img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="nextjs-logo" />
+<img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white" alt="jest-logo" />
+<img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" alt="redux-logo" />
+<img src="https://img.shields.io/badge/Chakra--UI-319795?style=for-the-badge&logo=chakra-ui&logoColor=white" alt="chakraiu-logo" />
+<img src="https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=React_Query&logoColor=white" alt="reactquery-logo" />
+
+<img src="https://miro.medium.com/v2/resize:fit:68/format:webp/1*eYYtH7FRS5oIIyzQMt9goQ.png" alt="eslint-logo" />
+<img src="https://madewithreact.com/content/images/2020/04/formik.png" width='68px' alt="eslint-logo" />
+
+**Deploy:**
+
+<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="vercel-logo" />
+
+# Instalação e execução
+
+O projeto já foi colocado no ar na Vercel através do link no "description" do projeto, você também pode acessa-lo clicando <a href="https://rick-and-morty-api-pied.vercel.app/" target="_blank">AQUI</a>
+
+Caso queira instalar e executar o projeto localmente use os comandos:
+
+### Clone o projeto
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  git clone git@github.com:ernanicavila/rick-and-morty-api.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Va até a pasta do projeto
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd rick-and-morty-api
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Instale as dependencias:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+  npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+ou
 
-## Learn More
+```bash
+  yarn
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Inicie o server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+ou
 
-## Deploy on Vercel
+```bash
+  yarn dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Visualizar
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Abra o http://localhost:3000 (supondo que a mesma está fora de uso) no seu browser para visualizar o projeto.
+
+# Testes
+
+### Rodar testes de coverage
+
+```
+npm run test:coverage
+```
+
+ou
+
+```
+yarn test:coverage
+```
+
+### Rodar testes por componente
+
+```
+npm run test *nome*.test.js
+```
+
+ou
+
+```
+yarn test *nome*.test.js
+```
