@@ -1,5 +1,5 @@
-import characterService from '../src/services/Characters';
-import { fetchMock, fetchRick, fetchAll } from '../utils/mock';
+// import characterService from '../src/services/Characters';
+// import { fetchMock, fetchRick, fetchAll } from '../utils/mock';
 
 describe('Verifica as funções de API', () => {
 	beforeEach(() => jest.clearAllMocks());

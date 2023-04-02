@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import Layout from '@/components/Layout';
 import characterService from '@/services/Characters';
@@ -19,7 +19,7 @@ import useDebounce from '@/components/Debounce';
 import favService from '@/services/Favorites';
 import Loading from '@/components/Loading';
 
-export default function Home() {
+function Home() {
 	const route = useRouter();
 	const [search, setSearch] = useState({
 		name: '',
@@ -70,7 +70,7 @@ export default function Home() {
 		const check = get?.some((e: { id: number }) => e.id === el.id);
 
 		if (check) {
-			const filtered = array.filter((e: any) => e.id !== el.id);
+			const filtered = array.filter((e: { id: number }) => e.id !== el.id);
 			setFav(filtered);
 			favService.create(filtered);
 		} else {
@@ -79,7 +79,7 @@ export default function Home() {
 		}
 	};
 
-	React.useEffect(() => {
+	useEffect(() => {
 		const get = localStorage.getItem('favorites');
 		if (get) {
 			setFav(JSON.parse(get));
@@ -190,3 +190,5 @@ export default function Home() {
 		</>
 	);
 }
+
+export default Home;

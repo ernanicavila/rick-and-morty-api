@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-	Flex,
+	Image,
 	Box,
 	Button,
 	Input,
@@ -46,9 +46,15 @@ const Login = () => {
 
 	return (
 		<form onSubmit={formik.handleSubmit}>
-			<Box p="16px" mt="5%" mx="auto" w={{ base: 320, sm: 400, md: 500 }}>
+			<Box mt='10%' p="16px" mx="auto" w={{ base: 320, sm: 400, md: 500 }}>
+				<Image
+					mx="auto"
+					src="images/rick.jpg"
+					alt="rick and morty logo"
+					w="375px"
+				/>
 				<FormControl mt="16px" isInvalid={!!formik.errors.email}>
-					<FormLabel>Email </FormLabel>
+					<FormLabel>Email</FormLabel>
 					<Input
 						placeholder="Email"
 						name="email"

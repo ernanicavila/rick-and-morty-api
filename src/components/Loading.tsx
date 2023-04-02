@@ -1,5 +1,9 @@
 import { Text, Image, Flex } from '@chakra-ui/react';
-function Loading({ text }: any) {
+
+interface LoadingProps {
+	text: string;
+}
+function Loading({ text }: LoadingProps) {
 	return (
 		<Flex alignItems="center" flexDir="column" w="300px">
 			<Image

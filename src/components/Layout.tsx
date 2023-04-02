@@ -10,7 +10,7 @@ import {
 	IconButton,
 	Image,
 } from '@chakra-ui/react';
-import { FiMenu, FiHome } from 'react-icons/fi';
+import { FiMenu, FiHome, FiStar } from 'react-icons/fi';
 import { useAppSelector } from '@/Redux/hooks';
 import { selectUser } from '@/Redux/slice';
 import md5 from 'crypto-js/md5';
@@ -24,7 +24,7 @@ function Layout({ children }: React.PropsWithChildren) {
 			<Box boxShadow="lg" p="8px" borderBottom="1px solid black">
 				<Flex
 					w="100%"
-					p="8px"
+					p={{ base: 'none', md: '8px' }}
 					justifyContent="space-between"
 					alignItems="center"
 				>
@@ -36,7 +36,7 @@ function Layout({ children }: React.PropsWithChildren) {
 						<Link href="/home">Home</Link>
 						<Link href="/favorites">Favoritos</Link>
 					</Flex>
-					<Flex alignItems="center">
+					<Flex alignItems="center" display={{ base: 'none', md: 'flex' }}>
 						{email}
 						<Image
 							ml="16px"
@@ -48,7 +48,7 @@ function Layout({ children }: React.PropsWithChildren) {
 						/>
 					</Flex>
 				</Flex>
-				<Box display={{ base: 'flex', md: 'none' }}>
+				<Flex alignItems="center" display={{ base: 'flex', md: 'none' }}>
 					<Menu>
 						<MenuButton
 							bgColor="white"
@@ -58,15 +58,15 @@ function Layout({ children }: React.PropsWithChildren) {
 							variant="outline"
 						/>
 						<MenuList>
-							<MenuItem as="a" icon={<FiHome />} href="/">
+							<MenuItem as="a" icon={<FiHome />} href="/home">
 								Home
 							</MenuItem>
-							<MenuItem as="a" icon={<FiHome />} href="/favorites">
+							<MenuItem as="a" icon={<FiStar />} href="/favorites">
 								Favoritos
 							</MenuItem>
 						</MenuList>
 					</Menu>
-				</Box>
+				</Flex>
 			</Box>
 			<Flex flexDir="column" mx="auto">
 				{children}
