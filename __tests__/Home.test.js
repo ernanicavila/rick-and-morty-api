@@ -5,6 +5,7 @@ import { store } from '../src/Redux/store';
 import Home from '../src/modules/Home';
 import { annie } from '../utils/mock';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import mockAxios from 'jest-mock-axios';
 
 jest.mock('next/router', () => require('next-router-mock'));
 
@@ -31,6 +32,7 @@ describe('Testes da tela de Home', () => {
 				</Provider>
 			</QueryClientProvider>,
 		);
+		mockAxios.get.mockResolvedValueOnce();
 
 		await waitFor(() => {
 			screen.findByText(/annie/i);
