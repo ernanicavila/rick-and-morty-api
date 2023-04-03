@@ -28,6 +28,7 @@ function Layout({ children }: React.PropsWithChildren) {
 	} = useAppSelector(selectUser);
 	return (
 		<Box backgroundColor="#EBF8FF" minH="100vh" h="100%">
+			<title>Green Acesso Test</title>
 			<Box boxShadow="lg" p="8px" borderBottom="1px solid black">
 				<Flex
 					w="100%"

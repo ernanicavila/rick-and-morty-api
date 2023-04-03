@@ -19,7 +19,6 @@ export default function App({ Component, pageProps }: AppProps) {
 		<QueryClientProvider client={new QueryClient()}>
 			<Provider store={store}>
 				<ChakraProvider theme={theme}>
-					<title>Green Acesso Test</title>
 					<Component {...pageProps} />
 				</ChakraProvider>
 			</Provider>
