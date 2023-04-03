@@ -7,8 +7,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"test:coverage": "jest --coverage --watch",
-		"test": "jest --watch"
+		"test:coverage": "jest --coverage --watchAll",
+		"test": "jest --watchAll"
 	},
 	"dependencies": {
 		"@chakra-ui/react": "^2.5.4",
