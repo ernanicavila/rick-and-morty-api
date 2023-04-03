@@ -89,9 +89,7 @@ export default function CharacterDetails() {
 						<Checkbox
 							type="checkbox"
 							onChange={() => handleFavorite(getCharacter?.data?.data)}
-							isChecked={fav.some(
-								(c) => c.id === getCharacter?.data?.data?.id,
-							)}
+							isChecked={fav?.some((c) => c.id === getCharacter?.data?.data?.id)}
 						>
 							Favoritar
 						</Checkbox>
