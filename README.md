@@ -17,6 +17,8 @@ Esse é um teste tecnico para a empresa Green Accees. A ideia do projeto é cria
 
 Este projeto utiliza diversas tecnologias para tornar a criação de formulários mais eficiente e segura. Utilizamos o Formik e Yup para gerenciar e validar formulários, o Redux para gerenciar o estado da aplicação e exibir o e-mail do usuário na página principal do projeto, o Jest para testar nossos componentes e gerar relatórios de cobertura total, o ChakraUI para criar estilos responsivos e garantir agilidade, praticidade e legibilidade do código, e o ESLint para garantir boas práticas e manter o código limpo e organizado.
 
+Não existe um login ou email certo nesse projeto, qualquer email valido(teste@teste.com) ou senha de no minimo 6 caracteres funcionará.
+
 # Instalação e execução
 
 O projeto já foi colocado no ar na Vercel através do link no "description" do projeto, você também pode acessa-lo clicando <a href="https://rick-and-morty-api-pied.vercel.app/" target="_blank">AQUI</a>
