@@ -64,11 +64,6 @@ function Home() {
 		getAll.refetch();
 		setError(undefined);
 		setPage(1);
-		setSearch({
-			name: '',
-			status: '',
-			gender: '',
-		});
 	};
 	const handleFavorite = (el: ICharacterDetail): void => {
 		const array = [...fav, el];
